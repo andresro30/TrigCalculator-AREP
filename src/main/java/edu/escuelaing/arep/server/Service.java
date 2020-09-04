@@ -14,7 +14,7 @@ public class Service {
         System.out.println( "Hello World!" );
         port(getPort());
         get("/", (req, res) -> page(req,res));
-        get("/submit", (req, res) -> result(req, res));
+        get("/submit", (req, res) -> resultPage(req, res));
     }
 
     private static String page(Request req, Response res) {
@@ -40,11 +40,21 @@ public class Service {
         return page;
     }
 
-    private static JSONObject result(Request req, Response res) {
+    private static String resultPage(Request req, Response res){
         String number = req.queryParams("fdata");
         String operator = req.queryParams("foperacion");
         JSONObject obj = new TrigCalculator().getData(number,operator);
-        return obj;
+
+        String pagina = "<DOCTYPE html"
+                + "<html>"
+                + "<title> Calculadora Trigonometrica</title>"
+                + "<body>"
+                + "<h1>Resultado</h1>"
+                + "<h3>Operación : "+operator+ "</h3>"
+                + "<h3>Número : " + obj.get(operator) + "</h3>"
+                + "</body>"
+                + "</html>";
+        return pagina;
     }
 
 
