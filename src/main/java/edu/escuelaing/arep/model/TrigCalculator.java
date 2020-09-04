@@ -1,9 +1,7 @@
 package edu.escuelaing.arep.model;
 
 import org.json.JSONObject;
-import spark.Request;
-import spark.Response;
-import static spark.Spark.*;
+
 
 /**
  * Hello world!
@@ -11,7 +9,11 @@ import static spark.Spark.*;
  */
 public class TrigCalculator {
 
-    public JSONObject getData(String number,String operator) {
+    public static void main(String[] args) {
+        getData("1","sin");
+    }
+
+    public static JSONObject getData(String number, String operator) {
         Calculator calculator = new Calculator();
         JSONObject obj = new JSONObject();
 
